@@ -1,15 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3-Ball Pool</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div id="app">
-        
+        <div id="sidebar">
+            <div>
+                <h1>3<br><span>BALL</span><br>POOL</h1>
+            </div>
+            <div class="steps">
+                <div class="step active" id="step-1"></div>
+                <div class="step" id="step-2"></div>
+                <div class="step" id="step-3"></div>
+                <div class="step" id="step-4"></div>
+            </div>
+            <div class="phase-indicator" id="phase-label">Phase 1 — <b>Place Bodies</b></div>
+            <hr class="divider">
+            <div class="mass-section">
+                <label>Mass Configuration</label>
+                <div class="body-mass">
+                    <div class="body-label">
+                        <span><span class="dot dot-1"></span>Body 1</span>
+                        <span class="mass-val" id="mass-val-0">1.0x</span>
+                    </div>
+                    <input type="range" class="slider-1" id="slider-0" min="1" max="100" value="10" step="1">
+                </div>
+                <div class="body-mass">
+                    <div class="body-label">
+                        <span><span class="dot dot-2"></span>Body 2</span>
+                        <span class="mass-val" id="mass-val-1">1.0x</span>
+                    </div>
+                    <input type="range" class="slider-2" id="slider-1" min="1" max="100" value="10" step="1">
+                </div>
+                <div class="body-mass">
+                    <div class="body-label">
+                        <span><span class="dot dot-3"></span>Body 3</span>
+                        <span class="mass-val" id="mass-val-2">1.0x</span>
+                    </div>
+                    <input type="range" class="slider-3" id="slider-2" min="1" max="100" value="10" step="1">
+                </div>
+            </div>
+            <hr class="divider">
+            <div class="score-display">
+                <div class="score-label">Score</div>
+                <div class="score-value" id="live-score">0</div>
+            </div>
+            <div class="combo-wrap">
+                <div class="combo-header">
+                    <span class="combo-title">Combo</span>
+                    <span class="combo-label" id="combo-label">1.0x</span>
+                </div>
+                <div class="combo-track">
+                    <div class="combo-fill" id="combo-fill"></div>
+                </div>
+            </div>
+            <div class="score-explainer">
+                Score = <b>Gravity Strength</b> × <b>Combo</b>. Keep Bodies Close To Build Your Combo - Drifting Apart Drains It Instantly.
+            </div>
+            <hr class="divider">
+            <div id="status-msg">Click anywhere on the canvas to place Body 1.</div>
+            <hr class="divider">
+            <div class="stats" id="stats-panel" style="display: none">
+                <label>Live Stats</label>
+                <div class="stat-row">
+                    <span>Score</span>
+                    <span id="stat-score">0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Time</span>
+                    <span id="stat-time">0.00s</span>
+                </div>
+                <div class="stat-row">
+                    <span>Bodies Alive</span>
+                    <span id="stat-bodies">3</span>
+                </div>
+                <div class="stat-row">
+                    <span>Body 1 Speed</span>
+                    <span id="stat-v0">—</span>
+                </div>
+                <div class="stat-row">
+                    <span>Body 2 Speed</span>
+                    <span id="stat-v1">—</span>
+                </div>
+                <div class="stat-row">
+                    <span>Body 3 Speed</span>
+                    <span id="stat-v2">—</span>
+                </div>
+            </div>
+            <div class="scoreboard">
+                <label>Top Runs</label>
+                <ul id="scoreboard-list">
+                    <li class="sb-empty">No runs yet</li>
+                </ul>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <button class="btn btn-primary" id="btn-launch" disabled>Launch Simulation</button>
+                <button class="btn btn-end" id="btn-end" disabled>End &amp; Save Score</button>
+                <button class="btn btn-danger" id="btn-reset">Reset</button>
+            </div>
+        </div>
+        <div id="canvas-wrap">
+            <canvas id="c"></canvas>
+            <div id="overlay">
+                <h2 id="overlay-title">SIMULATION<br>ENDED</h2>
+                <p id="overlay-sub">All Bodies Have Left The Observable Universe.</p>
+                <div id="overlay-score" style="font-family: 'Orbitron',sans-serif; font-size: 22px; font-weight: 700; color:var(--accent2); text-shadow:0 0 16px var(--glow2); letter-spacing:2px;">0</div>
+                <button class="btn btn-primary" onclick="resetALL()">Run Again</button>
+            </div>
+        </div>
     </div>
-    
+    <script src="script.js"></script>
 </body>
 </html>
